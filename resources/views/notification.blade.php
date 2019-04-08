@@ -81,7 +81,16 @@ class RepliedToProperty extends Notification
          'user'=>auth()->user()
         ];
     }
-
+//subscribder  joonno
+public function toMail($notifiable)
+    {
+    return (new MailMessage)
+                ->greeting('Hellow Viwers')
+                ->subject($this->submit_properties->title)
+                ->line('New Post By'.$this->submit_properties->user->name)
+                ->action('Click here to view the News', route('property.detail',$this->submit_properties->id))
+                ->line('Na Dekhle Chram Miss');
+}
     /**
      * Get the array representation of the notification.
      *

@@ -32,3 +32,20 @@ php artisan migrate:refresh --seed
 
 //resource/js/components/review-star.vue 
 
+//Property/Model
+
+ public function getStarRating(){
+  
+    $count=$this->comments()->count('star');
+    if(empty($count)){
+      return 0;
+    }
+    $total_star=$this->comments()->sum('star');
+    foreach ($this->comments() as $comment) {
+          $count=$count+$comment->replies()->count();
+          $total_star=$total_star+$comment->replies()->sum('star');      
+        }
+    
+    $average=$total_star/$count;
+    return $average;
+  }

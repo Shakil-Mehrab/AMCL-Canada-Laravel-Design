@@ -29,7 +29,8 @@ class News extends Model
     {
         return 'News';
     }
-
+    public function toSearchableArray()
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
     {
         $listins = $this->toArray();
         $listins['created_at_human']=$this->created_at->diffForHumans();
