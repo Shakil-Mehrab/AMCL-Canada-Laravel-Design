@@ -242,3 +242,78 @@ function stripeTokenHandler(token) {
 
   </body>
 </html>
+//charges a giye nicher command copy koro
+//composer
+composer require stripe/stripe-php
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//in Do sonething
+<!doctype html>
+<html class="no-js" lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>
+           @yield('title','ecom')
+        </title>
+       
+        <link rel="stylesheet" href="{{asset('style/ownstyle.css')}}"/>
+        <script src="https://js.stripe.com/v3/"></script>
+        
+   </head>
+<body> 
+  
+      <div class="item-wrapper">
+          <h3 class="subheader"><span class="price-tag"></h3>
+          <div class="row">
+              <div class="large-12 columns">
+                  <h2>make your payment</h2>
+                  <form action="{{route('payment.store')}}" method="post" id="payment-form">
+                    {{csrf_field()}}
+                    <div class="form-row">
+                      <label for="card-element">
+                        Credit or debit card
+                      </label>
+                      <div id="card-element">
+                        <!-- A Stripe Element will be inserted here. -->
+                      </div>
+
+                      <!-- Used to display Element errors. -->
+                      <div id="card-errors" role="alert"></div>
+                    </div>
+                  <br>
+                    <button class="button primary">Submit Payment</button>
+                  </form>
+              </div>
+          </div>
+       </div>
+
+    <script src="{{asset('dist/js/vendor/jquery.js')}}"></script>
+    <script src="{{asset('dist/js/app.js')}}"></script>    
+  </body>
+</html>

@@ -27,7 +27,7 @@ ekhane giye kaj koro
 
 //Middleware 
 Middleware/RedirectIfAuthenticate
-Middleware/AdminMiddleware
+Middleware/Admin
 
 
 //Lv/frm/src/Illu/foundation/exception/handler
@@ -45,22 +45,6 @@ $admin->password=bcrypt(”123456”)
 $admin->save():
 
 
-
-
-
-//Lv/frm/src/Illu/foundation/exception/handler
-
-//table
-admin table
-
-//Admin Input
-Php artisan tinker
-$admin =new App\Admin
-$admin->name=”Shakil Mehrab”
-$admin->email=”Shakil Mehrab”
-$admin->job_title=”Shakil Mehrab”
-$admin->password=bcrypt(”123456”)
-$admin->save()
 
 
 //Reset password
@@ -104,3 +88,5 @@ class Admin
         return redirect('/admin/login');
     }
 }
+//App\Http\Kernel
+'admin' => \App\Http\Middleware\Admin::class,

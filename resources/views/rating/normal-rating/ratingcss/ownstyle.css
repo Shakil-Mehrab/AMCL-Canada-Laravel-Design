@@ -1,0 +1,5 @@
+body{background: #78914D}
+.payment-background{background: linear-gradient(#E5E5E5,#093238)}
+.large-part{display: block;border-radius:4px;background:white;padding:20px 20px 20px 20px}
+.navigation{display: block;border-radius:4px;background:white;padding:0px 20px 0px 20px}
+.sidebar{ display: block; background-color:white;padding:20px;border-radius:4px}
