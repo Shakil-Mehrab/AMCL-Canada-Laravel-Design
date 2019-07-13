@@ -20,3 +20,12 @@ php artisan tinker//change to mood of query
 create Resource:  php artisan make:resource Product/ProductCollection
 Request:php artisan make:request ProductRequest
 
+//already esist problem sove
+git remote rm origin
+git remote rm upstream
+
+//index.lok remove
+git folder er position dekhabe okhane giye hidden file show korale
+		.git a giye index.lok delete krte hobe
+
+
