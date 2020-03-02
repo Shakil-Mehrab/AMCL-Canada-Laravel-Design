@@ -6,16 +6,22 @@ Php artisan make:model  App/Product -a
 
 
 
+
+
 Git Init
 Open git ignore in folder blog and cut the vendor option 
 add . //add all er jonno nicher command ti likho
 //j kono repositary te jao 
 colone option a gele previous existing repositary chibe
 okhane repositary er link diye "change repositary" click koro
+
+
 git remote add origin https://github.com/Shakil-Mehrab/api.git>git push -u origin master
 route api update:
 database ekta foldare rekhe git add . dao.
-git status>add .> git status > Git commit -m “Created Model -a”> git status will show clean>git push
+git init>status>add .>status >commit -m “Created Model -a”> git status will show clean>git push
+
+
 php artisan tinker//change to mood of query
 create Resource:  php artisan make:resource Product/ProductCollection
 Request:php artisan make:request ProductRequest

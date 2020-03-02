@@ -13,7 +13,10 @@ https://www.algolia.com/dashboard
             'secret' => env('ALGOLIA_SECRET', ''),
         ],  
 //env te copy krte hobe ID and Admin Api key from algolia
-
+//my account>enable 2FA
+//left header a current id er nicehe "create app" theke new ekta createe koro
+//command
+php artisan scout:import "App\Post"
 
 //Model
 <?php
@@ -42,7 +45,7 @@ class News extends Model
 }
 
 composer require algolia/algoliasearch-client-php:^2.2
-php artisan scout:import "App\Listing"
+php artisan scout:import "App\Model\Product"
 
  npm install algoliasearch --save
  npm install autocomplete.js --save

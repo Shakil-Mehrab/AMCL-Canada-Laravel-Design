@@ -98,3 +98,9 @@ class NewsShared extends Mailable
 {!! nl2br(e($body)) !!}<br>
 ---<br><br>
 @endif
+
+
+// gmail a mail pathate chaile 
+originam gmail dao
+and original password dao;
+google account>security>Less secure app access>turn on
