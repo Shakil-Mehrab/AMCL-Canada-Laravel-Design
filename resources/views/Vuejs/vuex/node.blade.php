@@ -6,6 +6,12 @@ https://nodejs.org/en/download/
 //auth
 composer require laravel/ui --dev
 php artisan ui vue --auth
+////////////vuex install
+https://vuex.vuejs.org/installation.html
+npm install vuex --save
+import Vue from 'vue'
+import Vuex from 'vuex'
+Vue.use(Vuex)
 
 //lte install
 https://adminlte.io/docs/2.4/installation
@@ -15,36 +21,79 @@ https://github.com/ColorlibHQ/AdminLTE/releases
  //resource/js/app
     require('admin-lte');
 
- //resorce/sass/app
+ ///////////resorce/sass/app
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+// Variables
+@import 'variables';
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
 @import '~admin-lte/dist/css/adminlte.css';
+///////////////////js/bootstrap.js
+
+try {
+    window.Popper = require('popper.js').default;
+    window.$ = window.jQuery = require('jquery');
+    require('bootstrap');
+    require('admin-lte');
+} catch (e){}
 
 
-//vue router install/install
+///////////////////////////vue router install/install
 https://router.vuejs.org/guide/
 npm install vue-router
 
- //resource/js/app
-import Vue from 'vue'
+///////////////////////////app.js
+require('./bootstrap');
+window.Vue = require('vue');
+
+import Vuex from 'vuex'
+Vue.use(Vuex)
+
+import storeData from "./store/index"
+const store = new Vuex.Store(
+  storeData
+)
+import {filter} from './filter'
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
-
-//vue router install/getting started
+import {routes} from './route';
 const router = new VueRouter({
-  routes // short for `routes: routes`
+  routes, // short for `routes: routes`
+  mode:'hash'//by detault # mode
+
+})
+
+Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('user-master', require('./components/user/userMaster.vue').default);
+Vue.component('admin-master', require('./components/Admin/adminMaster.vue').default);
+
+import { Form, HasError, AlertError } from 'vform'
+Vue.component(HasError.name, HasError)
+Vue.component(AlertError.name, AlertError)
+window.Form=Form;
+import Swal from 'sweetalert2'
+window.Swal=Swal;
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  onOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
 })
 const app = new Vue({
     el: '#app',
-    router
+    router,
+    store
 });
-//remode #/ from link
-const router = new VueRouter({
-  routes // short for `routes: routes`
-  mode:'history'//by default 'hash' #mode
-})
 
 
-//v-form
+
+///////////////////////////////////////v-form
 https://github.com/cretueusebiu/vform
 npm i axios vform
 //ap.js
@@ -53,28 +102,103 @@ window.Form=Form;
 Vue.component(HasError.name, HasError)
 Vue.component(AlertError.name, AlertError)
 //form//
-<form role="form"  @click.prevent="addCategory()">
-<input type="text" class="form-control" id="category_name" name="category_name" placeholder="Category Name" v-model="form.category_name" :class="{ 'is-invalid': form.errors.has('category_name') }">
-<has-error :form="form" field="category_name"></has-error>
-export default{
-		name:"add",
-		data () {
-			    return {
-			      // Create a new form instance
-			      form: new Form({
-			        category_name: ''
-			      })
-			    }
-			},
-		methods:{
-                addCategory(){
-                	// console.log('ok')
-                	this.form.post('/add-category')
-                	.then((response)=>{this.$router.push('/category-list')})
-                	.catch(()=>{})
-                }
-		}
-	}
+<form role="form"  @submit.prevent="addCategory()">
+<input type="text" class="form-control" id="name" name="name" placeholder="Category Name" v-model="form.name" :class="{ 'is-invalid': form.errors.has('name') }">
+<has-error :form="form" field="name"></has-error>
+<input type="submit">
+</form>
+//////////////////////////////create
+<script>
+  export default{
+    name:"store",
+    data () {
+          return {
+            form: new Form({
+              name: '',
+              brand: '',
+              price: '',
+              qty: '',
+              min_order: '',
+              max_order: '',
+              discount: '',
+              size: '',
+              category_id: '',
+              detail: '',
+            })
+          }
+      },
+    mounted(){
+      this.$store.dispatch("showCategory")
+    },
+    computed:{
+      getallCategory(){
+            return this.$store.getters.getCategory
+        }
+    },
+    methods:{
+        addProduct(){
+          this.form.post('user/product')
+          .then((response)=>{
+            this.$router.push('/edit/product/image/'+response.data.product)
+            Toast.fire({
+              icon: 'success',
+              title: 'Product Added Successfully!'
+            })
+        })
+          .catch(()=>{})
+        }
+    }
+  };
+</script>
+//////////////////////////////update
+<script>
+  export default{
+    name:"store",
+    data () {
+        return {
+          // Create a new form instance
+          form: new Form({
+            name: '',
+            brand: '',
+            price: '',
+            qty: '',
+            min_order: '',
+            max_order: '',
+            discount: '',
+            size: '',
+            category_id: '',
+            detail: '',
+
+          })
+        }
+    },
+    mounted(){
+      this.$store.dispatch("showCategory")
+      axios.get(`user/product/${this.$route.params.id}/edit`)
+      .then((response)=>{this.form.fill(response.data.product);})
+      .catch(()=>{})
+    },
+    computed:{
+      getallCategory(){return this.$store.getters.getCategory}
+    },
+    methods:{
+        editProduct(){
+            this.form.post(`user/product/update/${this.$route.params.id}`)
+            .then((response)=>{
+              // this.$router.push('/edit/product/image/'+response.data.product)
+              Toast.fire({
+                icon: 'success',
+                title: 'Product Updated Successfully!'
+              })
+            })
+            .catch(()=>{})
+        }
+    }
+  };
+</script>
+
+
+
 
 //sweet alert//
 https://sweetalert2.github.io/
@@ -94,21 +218,8 @@ const Toast = Swal.mixin({
     toast.addEventListener('mouseleave', Swal.resumeTimer)
   }
 })
-
 window.Toast = Toast;
 
-adding to vue file
-addCategory(){
-                	// console.log('ok')
-                	this.form.post('/add-category')
-                	.then((response)=>{this.$router.push('/category-list')
-                    Toast.fire({
-                      icon: 'success',
-                      title: 'Category Added Successfully!'
-                    })
-                })
-                	.catch(()=>{})
-                }
 
 //shoing from database//
 https://vuex.vuejs.org/
@@ -122,26 +233,47 @@ const store = new Vuex.Store(
 	storeData
 )
 
-//index.js
+/////////////////////index.js
  export default{
- 	state: {
-    category: "hlw i am here",
+  state: {
+    product: [],
   },
   getters:{
-    getCategory(state){
-    	return state.category;
-    }
+    getProduct(state){
+      return state.product;
+    },
   },
   actions:{
-
+    showProduct(context){
+       axios.get('/user/product')
+       .then((response)=>{context.commit('products',response.data.products)})
+    },
   },
   mutations: {
-    increment (state) {
-      state.count++
-    }
-  }
+    products(state,data) {
+      return state.product=data;
+    },
+  },
  }
-
  
- //moment
+///////////////////////route.js
+import userHome from './components/user/userHome.vue';
+export const routes = [
+  { path: '/home', component: userHome },
+]
+ 
+ ////////////////////////moment
 https://momentjs.com/
+npm install moment --save 
+//ap.js
+import {filter} from './filter'
+
+import moment from 'moment'
+import Vue from 'vue'
+
+Vue.filter('timeformat',(arg)=>{
+  return moment(arg).format("MMM Do YY");    
+})
+Vue.filter('shortlength',function(text,length,suffix){
+  return text.substring(0,length)+suffix;    
+})

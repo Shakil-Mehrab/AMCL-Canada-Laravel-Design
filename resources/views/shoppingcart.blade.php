@@ -1,9 +1,15 @@
 https://github.com/darryldecode/laravelshoppingcart
 // install
-composer require "darryldecode/cart:~4.0"
+composer require "darryldecode/cart"    
+               or
+composer require "darryldecode/cart:~4.0" 
 //config app
 Darryldecode\Cart\CartServiceProvider::class
 'Cart' => Darryldecode\Cart\Facades\CartFacade::class
+
+
+php artisan vendor:publish --provider="Darryldecode\Cart\CartServiceProvider" --tag="config"
+
 //controller
 use Cart;
 

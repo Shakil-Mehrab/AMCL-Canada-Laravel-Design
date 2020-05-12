@@ -34,4 +34,16 @@ git remote rm upstream
 git folder er position dekhabe okhane giye hidden file show korale
 		.git a giye index.lok delete krte hobe
 
+////create all in one command
+php artisan make:model Model/Shop -a
+/////table a kichu new field add and migration
+php artisan migrate:rollback
+php artisan migrate
 
+
+/////////mail with template
+php artisan make:mail Shuper --markdown=mail.admin.shop.cativation
+
+
+///////////policy
+php artisan make:policy ShopPolicy --model=Model/Shop
