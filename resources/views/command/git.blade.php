@@ -47,3 +47,5 @@ php artisan make:mail Shuper --markdown=mail.admin.shop.cativation
 
 ///////////policy
 php artisan make:policy ShopPolicy --model=Model/Shop
+///////////storage,public link
+php artisan storage:link

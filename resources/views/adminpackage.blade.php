@@ -386,3 +386,18 @@ Read Products
 Edit Products
 Add Products
 Delete Products
+
+
+
+///////////database change
+191 field ache joto
+
+categories
+data_types
+postspages
+translation
+users
+
+
+translation a tbl_name=255 column_name=255 locale=255
+

@@ -141,3 +141,38 @@ return redirect($response['paypal_link']);
 GetExpressCheckoutDetails
 
 $response = $provider->getExpressCheckoutDetails($token);
+
+
+
+
+
+////////////Account open
+www.paypal.com/cy/home
+free sign up>cyprus and business option>email>password>address>zip=1217>country=bangladesh>01615336636>individual bussiness>business url faka raho
+>css=Md Shakil Sarder>make default currency dollar
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+https://github.com/paypal/PayPal-PHP-SDK/wiki/Installation-Composer
+$ composer require paypal/rest-api-sdk-php:*
+/////////////make your irst call
+https://github.com/paypal/PayPal-PHP-SDK/wiki/Making-First-Call
+$apiContext = new \PayPal\Rest\ApiContext(
+        new \PayPal\Auth\OAuthTokenCredential(
+            'AYSq3RDGsmBLJE-otTkBtM-jBRd1TCQwFf9RGfwddNXWz0uFU9ztymylOhRS',     // ClientID
+            'EGnHDxD_qRPdaLdZz8iCr8N7_MzF-YHPTkjs6NKYQvQSBngp4PTTVWkPZRbL'      // ClientSecret
+        )
+);

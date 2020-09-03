@@ -35,3 +35,79 @@
             <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
             <script src="{{asset('style/style/main.js')}}"></script>     
         </div>
+
+
+
+
+
+
+
+
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Electronics - eCommerce HTML5 Template</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/img/favicon.png">
+
+    <link rel="stylesheet" href="{{asset('bazarbaarifront/css/bootstrap/css/bootstrap.min.css')}}">
+
+</head>
+<body>
+@php
+use App\Model\Slide;
+$slides=Slide::all();
+@endphp
+    <div class="col-md-8">
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+            @for($i=0;$i<5;$i++)
+            @if($i==0)
+                <li data-target="#carousel-example-generic" data-slide-to="{{$i}}" class="active"></li>
+                @else
+                <li data-target="#carousel-example-generic" data-slide-to="{{$i}}"></li>
+            @endif
+            @endfor
+            </ol>
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+              @php $check=0; @endphp
+              @forelse($slides as $slide)
+               @php $check=$check+1;@endphp
+                 @if($check==1)
+                    <div class="item active">
+                      <img src="{{$slide->image}}" style="width:100%;height: auto;" alt="Slider">
+                      <div class="carousel-caption">
+
+                      </div>
+                    </div>
+                 @else
+                    <div class="item">
+                      <img src="{{$slide->image}}" style="width:100%;height: auto;" alt="Slider">
+                      <div class="carousel-caption">
+
+                      </div>
+                    </div>
+                @endif
+            @empty
+            @endforelse
+            </div>
+            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+              <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+              <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+    <script type="text/javascript" src="{{asset('bazarbaarifront/js/jquery-2.2.4.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('bazarbaarifront/js/bootstrap.min.js')}}"></script>
+</body>
+
+</html>
