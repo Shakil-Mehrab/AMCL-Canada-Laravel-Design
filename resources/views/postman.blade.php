@@ -12,8 +12,25 @@ rnter press koro
 
 Setting/Manaage Enviroment/global a jao route save koro
 
-https://github.com/nuxt-community/axios-module
-<!-- ekhane giye right side a dekho  -->
-axios.nuxtjs.org
-ekhane giye "setup" option a jao
-npm install @nuxtjs/axios --save
+<!-- authentication er jonno -->
+post route chalao.er jonno j token paoa jabe ta controller madhome asbe.eta copy koro and get route a jao.GET option er niche Authorization ache.
+
+Authorization>Bearer token>paste the token>sent
+
+<!-- add -->
+Header must accept>json and content-type>json
+post>body>raw> raw er row te json option select kore
+{
+    "products":[
+        {"id":1,"quantity":3},
+        {"id":2,"quantity":5}
+    ]
+
+}
+
+<!-- update -->
+Header must accept>json and content-type>json
+patch>body>x-www-form
+key             value
+
+quantity         5
