@@ -5,54 +5,82 @@ Intervention\Image\ImageServiceProvider::class
 //run for making folder in public
 php artisan storage:link   
 
-<?php
- 
-namespace App\Http\Controllers;
- 
-use Illuminate\Http\Request;
-use Image;
- 
-class ImageController extends Controller
-{
- public function store(Request $request)
-{
-    if($request->hasFile('profile_image')) {
-        //get filename with extension
-        $filenamewithextension = $request->file('profile_image')->getClientOriginalName();
- 
-        //get filename without extension
-        $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
- 
-        //get file extension
-        $extension = $request->file('profile_image')->getClientOriginalExtension();
- 
-        //filename to store
-        $filenametostore = $filename.'_'.time().'.'.$extension;
- 
-        //Upload File
-        $request->file('profile_image')->storeAs('public/profile_images', $filenametostore);
-        $request->file('profile_image')->storeAs('public/profile_images/thumbnail', $filenametostore);
- 
-        //Resize image here
-        $thumbnailpath = public_path('storage/profile_images/thumbnail/'.$filenametostore);
-        $img = Image::make($thumbnailpath)->resize(400, 150, function($constraint) {
-            $constraint->aspectRatio();
-        });
-        $img->save($thumbnailpath);
- 
-        return redirect('images')->with('success', "Image uploaded successfully.");
+//controller
+public function store(Request $request)
+    {
+        $data = $request->all();
+        $category = new Artist;
+        if ($request->hasfile('image')) {
+            echo $img_tmp = $request->file('image');
+            if ($img_tmp->isValid()) {
+                //image path code
+                $extension = $request->file('image')->getClientOriginalExtension();
+                $filename = rand(111, 99999) . '.' . $extension;
+                $img_path = 'uploads/artists/' . $filename;
+                //image resize
+                Image::make($img_tmp)->resize(200,200)->save($img_path);
+                $category->image = $filename;
+            }
+        }
+        $category->save();
+    }
+
+
+// virtual image
+<div style="width: 50%;margin:auto">
+    <iframe allowfullscreen="true" frameborder="0" src="https://art.kunstmatrix.com/apps/artspaces/index.html?external=true&amp;splashscreen=true&amp;language=en&amp;uid=17787&amp;exhibition=1518270" width="100%" height="600"></iframe>
+</div>
+
+
+// lazy image
+https://github.com/verlok/vanilla-lazyload
+<img  src="{{asset('icon.png')}}" data-src="{{asset('/uploads/categories/'.$cat->image)}}" class="photo" alt="">
+<script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.3/dist/lazyload.min.js"></script>
+<script>
+   const lazyLoadInstance = new LazyLoad({
+       elements_selector: ".photo"
+   })
+</script>
+
+
+// multiple image
+if(!empty($images=$request->file("images"))){
+        foreach($images as $image){
+          //  $image_name=str_random(20);
+            //  $ext=strtolower($image->getclientoriginalExtension());
+          // $image_full_name=$image_name.".".$ext;
+           $image_full_name=$image->getClientOriginalName();
+           $upload_path="images/extra/";
+           $image_url=$upload_path.$image_full_name;
+         if(count($images)>0){
+          $success=$image->move($upload_path,$image_full_name);
+            if($success){
+              $storage=new Media();
+              $storage->product_id=$product_id;
+              $storage->image=$image_url;
+                $storage->save();
+            }
+        }
     }
 }
+
+
+//responmsive image link
+https://picsum.photos/
+
+//image size jai hok back ground same thakbe but image tad majhe nijer size anujayi jayga nibe
+    <div
+      class="exh-cover-img"
+      :style="{
+        backgroundImage: 'url(' + artist.image + ')',
+        backgroundColor: '#f7f7f7',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'contain'
+      }"
+    ></div>
+<style>
+.exh-cover-img {
+  min-height: 180px;
 }
-
-
-
-//If you are looking for hard crop then replace below lines
-
-$img = Image::make($thumbnailpath)->resize(400, 150, function($constraint) {
-    $constraint->aspectRatio();
-});
-$img->save($thumbnailpath);
-//is changed by
-
-$img = Image::make($thumbnailpath)->resize(100, 100)->save($thumbnailpath);
+</style>

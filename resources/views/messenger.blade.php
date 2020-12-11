@@ -4,8 +4,6 @@ click about find page id
 https://developers.facebook.com/apps/451585265723432/dashboard/
 create my app.copy my app id
  https://www.mirrorcommunications.com/blog/how-to-add-facebook-messenger-to-your-website
-
-
  <div style="margin-left: 20px">
     <div class="fb-messengermessageus" 
       messenger_app_id="451585265723432" 
@@ -14,8 +12,6 @@ create my app.copy my app id
       size="large" >
     </div> 
   </div>
-
-
 
  <script>
   window.fbAsyncInit = function() {

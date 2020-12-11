@@ -54,3 +54,13 @@ php artisan event:generate
 old version of laravel
 composer create-project laravel/laravel TwitterClone "7.0.*"
 
+
+//npm un install hoy
+npm uninstall package_name -S
+or 
+package.json a giye line kete dao then npm update
+
+//composer remove hoy
+composer remove package_name -S
+or 
+composer.json a giye line kete dao then composer update

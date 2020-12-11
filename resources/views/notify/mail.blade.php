@@ -104,3 +104,16 @@ class NewsShared extends Mailable
 originam gmail dao
 and original password dao;
 google account>security>Less secure app access>turn on
+
+// mailtrap
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=d25ce03bdc2f1f
+MAIL_PASSWORD=e69bea51eb6a95
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS=admin@chitrakol.com
+MAIL_FROM_NAME="${APP_NAME}"
+
+// go gmail
+https://www.itsolutionstuff.com/post/laravel-8-send-mail-using-gmail-smtp-serverexample.html

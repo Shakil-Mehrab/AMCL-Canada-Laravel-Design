@@ -39,7 +39,7 @@ app.scss
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-webpack.mix.js
+<!-- webpack.mix.js -->
 const mix = require('laravel-mix');
 const tailwindcss = require('tailwindcss');
 mix.js('resources/js/app.js', 'public/js');
@@ -132,7 +132,7 @@ svg/icon-repeat/embaded code icon a click koro r loofe nao
 https://www.npmjs.com/package/vue-click-outside
 
 
-progress bar korar over writing red korar jonno
+<!-- progress bar korar, over writing red korar jonno -->
 https://tailwindcss.com/docs/plugins#complex-variants ///tailwind a giye complex variant likhe search dao and go to tailein.config
 again search 
 

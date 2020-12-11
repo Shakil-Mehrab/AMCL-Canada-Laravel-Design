@@ -3,6 +3,18 @@ or
 https://github.com/UniSharp/laravel-filemanager/blob/master/docs/installation.md
 
 
+<!-- etuku enough -->
+@section('js')
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: 'textarea'
+        });
+
+    </script>
+@endsection
+
+
 
 <!doctype html>
 <html class="no-js" lang="en" dir="ltr">
@@ -280,4 +292,30 @@ https://stackoverflow.com/questions/12111887/how-to-remove-double-quotes-from-a-
 
 @php echo str_replace('"', ' ',$product->detail); @endphp
 @php echo ltrim($product->detail,'"'); @endphp
+// in resourcwe
+'short_description' =>  Str::limit(strip_tags($this->description), 200,'...'),
 
+// in vue js
+<div class="text" v-html="nDescrip"></div>
+computed: {
+    nDescrip() {
+      return this.newsOne.description;
+    }
+  }
+
+
+// forala
+https://froala.com/wysiwyg-editor/examples/textarea/
+// source are in zip in public folder
+    <link rel="stylesheet" href="{{ asset('forala/css/froala_editor.pkgd.min.css') }}">
+    <textarea id="froala-editor">Initialize the Froala WYSIWYG HTML Editor on a textarea.</textarea>
+
+    <script type="text/javascript" src="{{ asset('forala/js/froala_editor.pkgd.min.js') }}"></script>
+    <script type="text/javascript" src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js">
+    </script>
+    <script>
+        new FroalaEditor('textarea#froala-editor', {
+            documentReady: true
+        })
+
+    </script>

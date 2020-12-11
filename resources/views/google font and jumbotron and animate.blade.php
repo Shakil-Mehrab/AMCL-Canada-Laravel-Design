@@ -1,11 +1,3 @@
-https://fonts.google.com/specimen/Cabin?selection.family=Oswald
-from customize
-lilght 300
-regular 400 
-From embaded
-<link href="https://fonts.googleapis.com/css?family=Oswald:300,400&display=swap" rel="stylesheet">
-in css file
-body{font-family: 'Oswald', sans-serif;}
 
 <div class="jumbotron" style="height:300px;overflow: hidden">
   <div style="margin-top: -50px">

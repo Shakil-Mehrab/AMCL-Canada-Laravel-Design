@@ -60,7 +60,7 @@ Vue.use(VueRouter)
 import {routes} from './route';
 const router = new VueRouter({
   routes, // short for `routes: routes`
-  mode:'hash'//by detault # mode
+  mode:'hash'//by detault # mode  //you can use history
 
 })
 
@@ -72,6 +72,7 @@ import { Form, HasError, AlertError } from 'vform'
 Vue.component(HasError.name, HasError)
 Vue.component(AlertError.name, AlertError)
 window.Form=Form;
+
 import Swal from 'sweetalert2'
 window.Swal=Swal;
 const Toast = Swal.mixin({
@@ -267,7 +268,7 @@ https://momentjs.com/
 npm install moment --save 
 //ap.js
 import {filter} from './filter'
-
+//filter.js
 import moment from 'moment'
 import Vue from 'vue'
 
@@ -277,3 +278,51 @@ Vue.filter('timeformat',(arg)=>{
 Vue.filter('shortlength',function(text,length,suffix){
   return text.substring(0,length)+suffix;    
 })
+
+
+<!-- //fragment -->
+https://github.com/Thunberg087/vue-fragment#readme
+npm i -s vue-fragment
+//app.js
+import Fragment from 'vue-fragment'
+Vue.use(Fragment.Plugin)
+
+export const MyComponent {
+  template: '
+  <fragment>
+    <input type="text" v-model="message">
+    <span>{{ message }}</span>
+  </fragment>
+  ',
+  data() { return { message: 'hello world }}
+}
+
+
+//npm un install hoy
+npm uninstall package_name -S
+or 
+package.json a giye line kete dao then npm update
+
+//composer remove hoy
+composer remove package_name -S
+or 
+composer.json a giye line kete dao then composer update
+
+<!-- $ not defined -->
+https://stackoverflow.com/questions/37928998/how-to-use-a-jquery-plugin-inside-vue
+npm install jquery --save  //enough
+
+
+01757825949=chaim (sala)
+
+<!-- sweet alert -->
+npm install sweetalert --save
+import swal from 'sweetalert';
+
+await axios
+    .post("/api/client/store", this.form)
+    .then(response => {
+      swal("Thank you ");
+    })
+    .catch(() => {});
+}

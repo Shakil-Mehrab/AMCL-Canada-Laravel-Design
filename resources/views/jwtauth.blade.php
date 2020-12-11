@@ -122,7 +122,7 @@ then niche cookies theke o delete koro;
 
 
 
-compare
+// compare
 <ProductVariation
     v-for="(variations, type) in product.variations"//product.variatins type a joma hoy.type er vitorta abar varitions a joma hoy
     :type="type"
