@@ -1,0 +1,1 @@
+<livewire:file-browser :object="$object" :ancestors="$ancestors" />

@@ -28,6 +28,18 @@ MAIL_PORT=465
 MAIL_USERNAME=director@hatirpal.com
 MAIL_PASSWORD=01742214318#Sim
 MAIL_ENCRYPTION=SSL
+ 
+<!-- uporer ta problem hole nicher ta -->
+<!-- eta non  ssl setting -->
+MAIL_MAILER=smtp
+MAIL_HOST=mail.chitrakolagallery.com
+MAIL_PORT=587
+MAIL_USERNAME=hello@chitrakolagallery.com
+MAIL_PASSWORD=01770705474
+MAIL_ENCRYPTION=null
+MAIL_FROM_ADDRESS=hello@chitrakolagallery.com
+MAIL_FROM_NAME="${APP_NAME}"
+
 
 AWS_ACCESS_KEY_ID=
 AWS_SECRET_ACCESS_KEY=

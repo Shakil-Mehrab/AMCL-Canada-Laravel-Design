@@ -319,3 +319,39 @@ https://froala.com/wysiwyg-editor/examples/textarea/
         })
 
     </script>
+
+
+
+// ck editor
+https://unisharp.github.io/laravel-filemanager/integration
+https://unisharp.github.io/laravel-filemanager/
+<form wire:submit.prevent="create"  >
+    <div >
+        <input type="text" wire:model="title" class="form-control" /><br>
+    </div>
+    <div wire:ignore>
+        <label for="">Short Description</label><br>
+        <textarea id="my-editor" name="desc" wire:model="desc"
+            class="form-control"></textarea><br>
+    </div>
+
+    <input type="submit" value="Submit" class="btn btn-success">
+</form>
+{{-- @push('scripts') --}}
+<script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
+<script>
+    var options = {
+        filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+        filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+        filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+        filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
+    };
+
+</script>
+<script>
+    CKEDITOR.replace('my-editor').on('change',function(e){
+        @this.set('desc',e.editor.getData());
+    });
+
+</script>
+{{-- @endpush --}}
