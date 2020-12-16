@@ -61,3 +61,10 @@ https://github.com/pqina/filepond
 
         $this->object = $this->object->fresh();//fresh ekta pre built method
     }
+
+
+
+
+
+
+

@@ -9,6 +9,7 @@
 9.Format HTML in PHP
 10.Laravel Blade formatter
 11.PHP Formatter
+12.Tailwind CSS IntelliSense
 
 
 //////////////////
