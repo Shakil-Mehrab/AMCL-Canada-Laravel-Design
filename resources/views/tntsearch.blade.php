@@ -1,7 +1,29 @@
 
-composer require laravel/scout
+1.composer require laravel/scout
 php artisan vendor:publish --provider="Laravel\Scout\ScoutServiceProvider"
-SCOUT_DRIVER=tntsearch
+
+2.https://github.com/teamtnt/laravel-scout-tntsearch-driver
+composer require teamtnt/laravel-scout-tntsearch-driver
+
+3.SCOUT_DRIVER=tntsearch
+
+4.php artisan scout:import "App\Models\Post"
+<!-- model -->
+5.use Laravel\Scout\Searchable;
+use Searchable;
+6.config/scout
+'tntsearch' => [
+        'storage'  => storage_path(), //place where the index files will be stored
+        'fuzziness' => env('TNTSEARCH_FUZZINESS', false),
+        'fuzzy' => [
+            'prefix_length' => 2,
+            'max_expansions' => 50,
+            'distance' => 2
+        ],
+        'asYouType' => true,
+        'searchBoolean' => env('TNTSEARCH_BOOLEAN', false),
+    ],
+<!-- adjacency list -->
 public function toSearchableArray() {
         return [
             'id' => $this->id,
@@ -10,10 +32,6 @@ public function toSearchableArray() {
             // 'path' => $this->ancestorsAndSelf->pluck('objectable.name')->reverse()->join('/')
         ];
     }
-php artisan scout:import "App\Models\Post"
-<!-- model -->
-use Laravel\Scout\Searchable;
-use Searchable;
 <!-- livewire php -->
  public function getResultsProperty() {
 

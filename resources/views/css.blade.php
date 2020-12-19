@@ -123,3 +123,14 @@ div{
 }
 
 }
+
+<!-- img -->
+filter:blur(2px)/brightness(100%/150%)/contrast(200%)/grayscale(100%)/invert(100%)/opacity(50%)/saturate(3)/sepia(100%)/
+<!-- box-sizing -->
+padding jate ager area er vitore kaj kore tar jonno 
+padding:5px;
+box-sizing:border-box; 
+for all
+*{
+box-sizing:border-box;
+}

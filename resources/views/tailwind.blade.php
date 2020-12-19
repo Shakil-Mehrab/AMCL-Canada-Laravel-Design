@@ -100,4 +100,60 @@ col-span-1  //like col-md-4
 tracking-wider //letter spaching
 
 transition ease-out/linear/in/in-out duration-500
-a
+
+
+
+<!-- letter space  -->
+tracking
+<!-- line height -->
+leading
+
+
+
+for nuxt
+https://tailwindcss.nuxtjs.org/setup
+npm install --save-dev @nuxtjs/tailwindcss
+npm install -D tailwindcss@npm:@tailwindcss/postcss7-compat postcss@^7 autoprefixer@^9
+npm install -D sass sass-loader @tailwindcss/forms
+npx tailwindcss-cli@latest init
+assets/css/tailwind.css  //its mandatory
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+https://tailwindcss.nuxtjs.org/tailwind-config
+<!-- tailwind config -->
+// const colors = require('tailwindcss/colors');
+module.exports = {
+  purge: {
+    mode:"layers",
+    enabled: process.env.NODE_ENV === 'production',
+    content: [
+      'components/**/*.vue',
+      'layouts/**/*.vue',
+      'pages/**/*.vue',
+      'plugins/**/*.js',
+      'nuxt.config.js',
+      // TypeScript
+      'plugins/**/*.ts',
+      'nuxt.config.ts'
+    ]
+  },
+  darkMode: false, // or 'media' or 'class'
+  theme: {
+    extend: {},
+  },
+  variants: {
+    extend: {
+      // colors:{
+      //   gray: colors.trueGray
+      // }
+    },
+  },
+  plugins: [require("@tailwindcss/forms")],
+}
+
+<!-- nuxt config -->
+  buildModules: [
+    "@nuxtjs/tailwindcss"
+  ],
+

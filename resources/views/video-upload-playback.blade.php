@@ -22,3 +22,34 @@ Controller
         }
         $product->save();
         return redirect()->back();
+
+
+
+<!-- youtube -->
+<section>
+    <div class="col-md-8 col-sm-12 offset-md-2">
+     <iframe width="100%" height="315" src="{{$video->link}}?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"  allowfullscreen></iframe>
+    </div>
+</section>
+
+<!-- facebook -->
+https://developers.facebook.com/docs/plugins/embedded-video-player/#configurator
+<script async defer src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2"></script>
+
+<section>
+    <div class="col-md-8 col-sm-12 offset-md-2" style="display: flex;justify-content: center;">
+      <div id="fb-root"></div>
+      <div class="fb-video" data-href="{{$video->link}}" data-autoplay="true" data-width="800" data-show-text="false">
+        <div class="fb-xfbml-parse-ignore">
+          <blockquote cite="{{$video->link}}">
+            <!--<a href="https://www.facebook.com/facebook/videos/10153231379946729/">How to Share With Just Friends</a>-->
+            <!--<p>How to share with just friends.</p>-->
+            <!--Posted by <a href="https://www.facebook.com/facebook/">Facebook</a> on Friday, December 5, 2014-->
+          </blockquote>
+        </div>
+      </div>
+    </div>
+</section>
+@endif
+<br><br>
+
