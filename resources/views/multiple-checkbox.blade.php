@@ -11,7 +11,7 @@
 <tbody>
   <tr>
     <td>{{$property->id}}</td>
-    <td><input type="checkbox" name="checkboxes[]" value="{{$property->id}}"></td>
+    <td><input type="checkbox" name="checkboxes[]" value="{{$property->id}}" class="selectall"></td>
     <td><button type="submit"><span style="color:#DD4F43"><i class="fas fa-trash-alt"></i></span></button></td>
 </tr> 
 </tbody>
@@ -20,11 +20,11 @@
 $(document).ready(function(){
 	$('#selectallboxes').click(function(event){
 		if(this.checked){
-			$('.checkboxes').each(function(){
+			$('.selectall').each(function(){
 				this.checked=true;
 			});
 		}else{
-			$('.checkboxes').each(function(){
+			$('.selectall').each(function(){
 				this.checked=false;
 			});
 		}

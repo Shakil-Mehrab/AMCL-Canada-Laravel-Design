@@ -398,3 +398,19 @@ class SubscriberController extends Controller
     	}         
     }
 }
+left navigation dropdown// function product_show_hide() {
+//     var click = document.getElementById('product_toggle');
+//     if (click.style.display == "none") {
+//         click.style.display = "block";
+//     } else {
+//         click.style.display = "none";
+//     }
+// }
+// function category_show_hide() {
+//     var click = document.getElementById('category_toggle');
+//     if (click.style.display == "none") {
+//         click.style.display = "block";
+//     } else {
+//         click.style.display = "none";
+//     }
+// }
