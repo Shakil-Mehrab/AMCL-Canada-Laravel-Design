@@ -22,6 +22,61 @@ JWT_TTL=3000
         ],
     ],
 
+
+
+
+
+
+
+
+
+//jwt bad.use sanctum
+https://laravel.com/docs/8.x/sanctum
+composer require laravel/sanctum
+php artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider"
+php artisan migrate
+//app/Http/Kernel.php file:
+'api' => [
+    \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+    'throttle:api',
+    \Illuminate\Routing\Middleware\SubstituteBindings::class,
+],
+
+
+<!-- for config/session go to .env-->
+SESSION_DOMAIN=localhost
+<!-- for config/sanctum go to .env-->
+SANCTUM_STATEFUL_DOMAINS=localhost:3000
+<!-- for config/cors-->
+SANCTUM_STATEFUL_DOMAINS=localhost:3000
+'paths' => ['api/*','sanctum/csrf-cookie'],
+
+
+https://auth.nuxtjs.org/
+pm install --save-exact @nuxtjs/auth-next
+ modules: [
+    '@nuxtjs/auth-next'
+  ],
+auth: {
+    strategies: {
+      laravelSanctum: {
+        provider: "laravel/sanctum",
+        url: "http://localhost:8000",
+        endpoints: {
+          login: {
+            url: "/api/auth/login"
+          }
+        }
+      }
+    }
+  },
+
+
+
+
+
+
+
 Route::group(['prefix' => 'auth'], function () {
     Route::post('/register', 'Auth\RegisterController@action');
     Route::post('/login', 'Auth\LoginController@action');
@@ -86,31 +141,7 @@ class MeController extends Controller
 }
 
 
-https://github.com/nuxt-community/auth-module
-https://auth.nuxtjs.org/guide/setup.html
-npm install @nuxtjs/auth --save
-// nuxt package.json
-    "@nuxtjs/auth": "^4.9.1",
-// nuxt.config.js
-modules: [
-    '@nuxtjs/axios',
-  ],
-auth: {
-  strategies:{
-    local:{
-      login:{
-        url: 'auth/login',
-        method: 'post',
-        propertyName:'meta.token'
-      },
-      user:{
-        url: 'auth/me',
-        method: 'get',
-        propertyName:'data'
-      }
-    }
-  }
-},
+
 
 
 // logout
@@ -122,41 +153,3 @@ then niche cookies theke o delete koro;
 
 
 
-// compare
-<ProductVariation
-    v-for="(variations, type) in product.variations"//product.variatins type a joma hoy.type er vitorta abar varitions a joma hoy
-    :type="type"
-    :variations="variations"
-    :key="type"
-    v-model="form.variation"
-/>
- data(){
-    return{
-      product:null,//ekahane single tai null or ''
-      form:{
-        variation:'',
-        quantity: 1
-      }
-    }
-  }, 
-  async asyncData({params,app}) {
-    let response = await app.$axios.$get(`products/${params.slug}`)
-    return{
-      product:response.data
-    }
-  },
-
-<div class="column is-3" v-for="product in products" :key="product.slug">
-    <Product :product="product" />
-</div>
-data(){
-    return{
-      products : [] //ekhane array
-    }
-  },
-
-async asyncData({params,app}) {
-    let response = await app.$axios.$get(`products?category=${params.slug}`)//laravel a products?category=food ja ekhane categories/food ta
-    return{
-      products : response.data
-}

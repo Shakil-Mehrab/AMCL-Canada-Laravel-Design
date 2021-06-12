@@ -414,3 +414,116 @@ left navigation dropdown// function product_show_hide() {
 //         click.style.display = "none";
 //     }
 // }
+
+
+     
+        <div class="form-group{{ $errors->has('country_id') ? ' is-invalid' : '' }} has-feedback">
+          <select name="country_id" class="form-control" required>
+              <option value="">Select One</option>
+              @forelse($countries as $country)
+                <option value="{{$country->id}}">{{$country->name}}</option>
+                @empty
+              <option value="">No Country</option>
+              @endforelse
+          </select> 
+          @if ($errors->has('country_id'))
+              <span class="invalid-feedback" role="alert">
+                  <strong style="color:red">{{ $errors->first('country_id') }}</strong>
+              </span>
+          @endif
+       </div>
+      
+       
+       <div class="form-group{{ $errors->has('city_id') ? ' is-invalid' : '' }} has-feedback col">
+            <select class="form-control" name="city_id" required>
+                                   
+                                    
+            </select> 
+            @if ($errors->has('city_id'))
+            <span class="help-block">
+                <strong style="color: red">{{ $errors->first('city_id') }}</strong>
+            </span>
+             @endif
+       </div>
+        <div class="form-group{{ $errors->has('district_id') ? ' is-invalid' : '' }} has-feedback">
+          <select class="form-control" name="district_id" required>
+                         
+                          
+          </select> 
+          @if ($errors->has('district_id'))
+          <span class="help-block">
+              <strong style="color: red">{{ $errors->first('district_id') }}</strong>
+          </span>
+          @endif
+       </div>
+
+<script>
+   $(function(){
+    var country=$('select[name="country_id"]');
+    var code=$('select[name="code_id"]');
+    var city=$('select[name="city_id"]');
+    var district=$('select[name="district_id"]');
+    code.attr('disabled','disabled')
+    city.attr('disabled','disabled')
+    district.attr('disabled','disabled')
+ country.change(function(){
+      var id=$(this).val();
+      if(id==''){
+       code.attr('disabled','disabled')
+       city.attr('disabled','disabled')
+       s='<option value=""></option>'
+       code.html(s);
+       city.html(s);
+     }})
+    country.change(function(){
+      var id=$(this).val();
+      if(id){
+       city.attr('disabled','disabled')
+       $.get('{{url('/cities?country_id=')}}'+id)
+        .success(function(data){
+          var s='<option value="">Select One</option>';
+          data.forEach(function(row){
+            s +='<option value="'+row.id+'">'+row.name+'</option>'
+          })
+          city.removeAttr('disabled')
+         city.html(s);
+        })
+       code.attr('disabled','disabled')
+       $.get('{{url('/codes?country_id=')}}'+id)
+        .success(function(data){
+          data.forEach(function(row){
+            s='<option value="'+row.id+'">'+row.code+'</option>'
+          })
+          code.removeAttr('disabled')
+          code.html(s);
+        })
+      }
+    })
+    city.change(function(){
+      var id=$(this).val();
+      if(id==''){
+       district.attr('disabled','disabled')
+       s='<option value=""></option>'
+       district.html(s);
+     }})
+    city.change(function(){
+      var id=$(this).val();
+      if(id){
+       district.attr('disabled','disabled')
+       $.get('{{url('/districts?city_id=')}}'+id)
+        .success(function(data){
+          var s='<option value="">Select One</option>';
+          data.forEach(function(row){
+            s +='<option value="'+row.id+'">'+row.name+'</option>'
+          })
+          district.removeAttr('disabled')
+          district.html(s);
+        })
+      }
+    })   
+  })
+</script>
+
+
+</body>
+</html>
