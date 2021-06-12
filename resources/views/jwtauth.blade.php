@@ -50,7 +50,7 @@ SANCTUM_STATEFUL_DOMAINS=localhost:3000
 <!-- for config/cors-->
 SANCTUM_STATEFUL_DOMAINS=localhost:3000
 'paths' => ['api/*','sanctum/csrf-cookie'],
-
+'supports_credentials' => true,
 
 https://auth.nuxtjs.org/
 pm install --save-exact @nuxtjs/auth-next
