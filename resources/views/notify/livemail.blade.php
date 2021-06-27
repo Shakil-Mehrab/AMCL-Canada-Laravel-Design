@@ -40,6 +40,15 @@ MAIL_ENCRYPTION=null
 MAIL_FROM_ADDRESS=hello@chitrakolagallery.com
 MAIL_FROM_NAME="${APP_NAME}"
 
+<!-- eta direct mail to gmail setting -->
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USERNAME=kuyashaafrim18@gmail.com
+MAIL_PASSWORD=rayat19sumaiya
+MAIL_ENCRYPTION=TLS
+MAIL_FROM_ADDRESS=mehraboussainshakil12@gmail.com
+MAIL_FROM_NAME="${APP_NAME}"
 
 AWS_ACCESS_KEY_ID=
 AWS_SECRET_ACCESS_KEY=

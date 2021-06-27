@@ -1,36 +1,4 @@
-https://jwt-auth.readthedocs.io/en/develop/laravel-installation/
-composer require tymon/jwt-auth
-php artisan jwt:secret
-
-<!-- .env -->
-JWT_SECRET=tvHEAqhJqrAfPd2AWVCsIRLGAP0iI2i1qoCWbpgDeAtInI01pMmk1253ECR7J53L
-JWT_TTL=3000
-
-<!-- config/auth -->
-'defaults' => [
-        'guard' => 'api',
-        'passwords' => 'users',
-    ],
-  'guards' => [
-        'web' => [
-            'driver' => 'session',
-            'provider' => 'users',
-        ],
-        'api' => [
-            'driver' => 'jwt',
-            'provider' => 'users',
-        ],
-    ],
-
-
-
-
-
-
-
-
-
-//jwt bad.use sanctum
+54    mn use sanctum
 https://laravel.com/docs/8.x/sanctum
 composer require laravel/sanctum
 php artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider"
@@ -44,12 +12,12 @@ php artisan migrate
 
 
 <!-- for config/session go to .env-->
-SESSION_DOMAIN=localhost
+SESSION_DOMAIN='localhost'
+APP_URL=http://localhost:8000
 <!-- for config/sanctum go to .env-->
 SANCTUM_STATEFUL_DOMAINS=localhost:3000
 <!-- for config/cors-->
-SANCTUM_STATEFUL_DOMAINS=localhost:3000
-'paths' => ['api/*','sanctum/csrf-cookie'],
+'paths' => ['/', 'api/*', 'login', 'register', 'sanctum/csrf-cookie'],
 'supports_credentials' => true,
 
 https://auth.nuxtjs.org/
@@ -71,9 +39,10 @@ auth: {
     }
   },
 
-
-
-
+axios: {
+    baseURL: 'http://localhost:8000',
+    credentials: true
+  },
 
 
 
